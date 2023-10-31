@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link Bootstrap CSS -->
+    <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../node_modules/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet">
+    <!-- Link Bootstrap and JQuery JS -->
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- Origin Policy Links -->
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="Cross-Origin-Opener-Policy" content="*">
+    <!-- Google OAuth script -->
+    <script type="text/javascript" src="GoogleOAuth.js" defer></script>
+    <!-- Proj. Title -->
+    <title>WebDevProj4</title>
+
+</head>
+
+<body>
+    <!-- HTML content goes here -->
+    <h>
+        Login
+    </h>
+
+    <div id="sign-in-container">
+        <div id="g_id_onload" data-client_id="951325617358-20v7s22jr35ahu01qdoeg0onh7hagu37.apps.googleusercontent.com"
+            data-context="signin" data-ux_mode="popup" data-callback="CredentialHandling" data-auto_prompt="false">
+        </div>
+
+        <div class="g_id_signin" data-type="standard" data-shape="pill" data-theme="filled_black"
+            data-text="continue_with" data-size="large" data-logo_alignment="left">
+        </div>
+    </div>
+    <!-- Link Bootstrap JS -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function CredentialHandling(response) {
+            decodeJwtResponse(response.credential);
+        }
+    </script>
+</body>
+
+</html>
