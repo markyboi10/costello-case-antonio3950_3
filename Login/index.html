@@ -40,11 +40,13 @@
                 <div class="mb-3">
                     <label class="visually-hidden">Email Address</label>
                     <input type="email" id="emailAddress" class="form-control" placeholder="Email Address" required
-                        autofocus>
+                        autofocus onfocusout="checkEmail('emailAddress')">
                 </div>
+                <div id="emailError" class="error-message"></div>
+                <div id="successMessage" class="success-message"></div>
                 <div class="mb-3">
                     <label class="visually-hidden">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password">
+                    <input type="password" id="LoginPassword" class="form-control" placeholder="Password">
                 </div>
                 <div class="d-grid gap-2">
                     <button type="button" class="btn btn-primary fw-bolder">Log in</button>
@@ -68,7 +70,8 @@
                     <div class="border-top my-3 mt-4 mb-4"></div>
 
                     <div class="d-grid gap-2 col-6 mx-auto">
-                        <button id="createAccountBtn" type="button" class="btn btn-success fw-bolder">Create New
+                        <button onclick="clearLoginFields()" id="createAccountBtn" type="button"
+                            class="btn btn-success fw-bolder">Create New
                             Account</button>
                     </div>
                 </div>
@@ -82,22 +85,23 @@
                 </div>
                 <div class="mb-3">
                     <label class="visually-hidden">Email Address</label>
-                    <input type="email" id="emailAddress" class="form-control" placeholder="Email Address" required
-                        autofocus>
+                    <input type="email" id="signupEmail" class="form-control" placeholder="Email Address" required
+                        autofocus onfocusout="checkEmail('signupEmail')">
                 </div>
                 <div class="mb-3">
                     <label class="visually-hidden">Password</label>
-                    <input type="password" id="password" class="form-control" placeholder="Password">
+                    <input type="password" id="passwordOne" class="form-control" placeholder="Password">
                 </div>
                 <div class="mb-3">
                     <label class="visually-hidden">Confirm Password</label>
-                    <input type="password" id="password" class="form-control" placeholder=" Confirm Password">
+                    <input type="password" id="passwordTwo" class="form-control" placeholder=" Confirm Password">
                 </div>
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary fw-bolder">Sign up</button>
+                    <button onclick="checkPassword()" type="button" class="btn btn-primary fw-bolder">Sign up</button>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                    <button id="backBtn" type="button" class="btn btn-danger fw-bolder">Back</button>
+                    <button onclick="clearSingUpFields()" id="backBtn" type="button"
+                        class="btn btn-danger fw-bolder">Back</button>
                 </div>
             </form>
         </div>
