@@ -6,7 +6,7 @@ function decodeJwtResponse(data) {
     if (jwtData && jwtData.email_verified === true) {
         localStorage.setItem('jwtData', JSON.stringify(jwtData));
         // Redirect to a different user profile home page
-        window.location.href = "../UserProfile/index.html";
+        window.location.href = "/UserProfile/index.html";
     } else {
         alert('Invalid JWT');
     }
