@@ -1,5 +1,14 @@
 function decodeJwtResponse(data) {
-    console.log(parseJwt(data))
+    var jwtData = parseJwt(data);
+    // Check if the JWT data is valid (customize this validation according to your requirements)
+    if (jwtData && jwtData.email_verified === true) {
+        console.log(jwtData);
+        // Redirect to a different HTML file if the JWT is valid
+        window.location.href = "../UserProfile/index.html"; // Replace with the desired URL
+    } else {
+        // Handle invalid JWT or show an error message
+        alert('Invalid JWT');
+    }
 }
 
 function parseJwt(token) {
