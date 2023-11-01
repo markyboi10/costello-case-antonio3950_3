@@ -1,16 +1,18 @@
+// Handle Google's open auth jwt token -> Navigate to new page
 function decodeJwtResponse(data) {
     var jwtData = parseJwt(data);
-    // Check if the JWT data is valid (customize this validation according to your requirements)
+    console.log(jwtData);
+    // Check if the JWT data is valid
     if (jwtData && jwtData.email_verified === true) {
-        console.log(jwtData);
-        // Redirect to a different HTML file if the JWT is valid
-        window.location.href = "../UserProfile/index.html"; // Replace with the desired URL
+        localStorage.setItem('jwtData', JSON.stringify(jwtData));
+        // Redirect to a different user profile home page
+        window.location.href = "../UserProfile/index.html";
     } else {
-        // Handle invalid JWT or show an error message
         alert('Invalid JWT');
     }
 }
 
+// Decode (parse) the recieved JWT
 function parseJwt(token) {
     var base64Url = token.split('.')[1];
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
