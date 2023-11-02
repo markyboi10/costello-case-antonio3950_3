@@ -37,35 +37,35 @@ function checkEmail(inputId) {
 }
 
 // Check if sign up passwords are the same
-function checkPassword() {
-    const passOne = document.getElementById("passwordOne").value;
-    const passTwo = document.getElementById("passwordTwo").value;
+// function checkPassword() {
+//     const passOne = document.getElementById("passwordOne").value;
+//     const passTwo = document.getElementById("passwordTwo").value;
 
-    if (passOne === passTwo) {
-        return true;
-    } else if (!passOne && !passTwo) {
-        return false;
-    } else {
-        document.getElementById("passwordOne").style.border = "2px solid red";
-        document.getElementById("passwordTwo").style.border = "2px solid red";
-        return false;
-    }
-}
+//     if (passOne === passTwo) {
+//         return true;
+//     } else if (!passOne && !passTwo) {
+//         return false;
+//     } else {
+//         document.getElementById("passwordOne").style.border = "2px solid red";
+//         document.getElementById("passwordTwo").style.border = "2px solid red";
+//         return false;
+//     }
+// }
 
 // Clear sign up fields and border on back btn click
 function clearSingUpFields() {
     document.getElementById("signupEmail").value = "";
-    document.getElementById("passwordOne").value = "";
-    document.getElementById("passwordTwo").value = "";
-    document.getElementById("passwordOne").style.border = "";
-    document.getElementById("passwordTwo").style.border = "";
+    // document.getElementById("passwordOne").value = "";
+    // document.getElementById("passwordTwo").value = "";
+    // document.getElementById("passwordOne").style.border = "";
+    // document.getElementById("passwordTwo").style.border = "";
     document.getElementById("signupEmail").style.border = "";
 }
 
 // Clear log in fields and border on sign up btn click
 function clearLoginFields() {
     document.getElementById("emailAddress").style.border = "";
-    document.getElementById("LoginPassword").style.border = "";
+    // document.getElementById("LoginPassword").style.border = "";
     document.getElementById("emailAddress").value = "";
-    document.getElementById("LoginPassword").value = "";
+    // document.getElementById("LoginPassword").value = "";
 }
