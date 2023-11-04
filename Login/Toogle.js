@@ -28,29 +28,17 @@ function checkEmail(inputId) {
     document.getElementById(inputId).style.border = "";
 
     // Check email validity
-    if (email && !validateEmail(email)) { // not valid
+    if (email !== null && !validateEmail(email)) { // not valid
         document.getElementById(inputId).style.border = "2px solid red";
+        document.getElementById("loginButton").disabled = true;
+        document.getElementById("signUpButton").disabled = true;
         return false;
     } else { // valid
+        document.getElementById("signUpButton").disabled = false;
+        document.getElementById("loginButton").disabled = false;
         return true;
     }
 }
-
-// Check if sign up passwords are the same
-// function checkPassword() {
-//     const passOne = document.getElementById("passwordOne").value;
-//     const passTwo = document.getElementById("passwordTwo").value;
-
-//     if (passOne === passTwo) {
-//         return true;
-//     } else if (!passOne && !passTwo) {
-//         return false;
-//     } else {
-//         document.getElementById("passwordOne").style.border = "2px solid red";
-//         document.getElementById("passwordTwo").style.border = "2px solid red";
-//         return false;
-//     }
-// }
 
 // Clear sign up fields and border on back btn click
 function clearSingUpFields() {
@@ -60,6 +48,7 @@ function clearSingUpFields() {
     // document.getElementById("passwordOne").style.border = "";
     // document.getElementById("passwordTwo").style.border = "";
     document.getElementById("signupEmail").style.border = "";
+
 }
 
 // Clear log in fields and border on sign up btn click

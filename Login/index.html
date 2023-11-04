@@ -25,13 +25,14 @@
 
 </head>
 
+<!-- HTML content goes here -->
+
 <body data-vide-bg="piggy">
-    <!-- HTML content goes here -->
 
     <div class="container-fluid">
 
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
-            <form class="rounded p-5 bg-light  col-lg-6 col-md-9 col-sm-12 opacity-75">
+            <form id='loginForm' class="rounded p-5 bg-light  col-lg-6 col-md-9 col-sm-12 ">
                 <div class="text-center mb-4 custom-font-size">
                     <h>
                         Log In
@@ -44,12 +45,8 @@
                 </div>
                 <div id="emailError" class="error-message"></div>
                 <div id="successMessage" class="success-message"></div>
-                <!-- <div class="mb-3">
-                    <label class="visually-hidden">Password</label>
-                    <input type="password" id="LoginPassword" class="form-control" placeholder="Password">
-                </div> -->
                 <div class="d-grid gap-2">
-                    <button type="button" class="btn btn-primary fw-bolder">Log in</button>
+                    <button id="loginButton" type="button" class="btn btn-primary fw-bolder">Log in</button>
                 </div>
                 <div>
                     <div id="sign-in-container" class="mt-3">
@@ -88,16 +85,9 @@
                     <input type="email" id="signupEmail" class="form-control" placeholder="Email Address" required
                         autofocus onfocusout="checkEmail('signupEmail')">
                 </div>
-                <!-- <div class="mb-3">
-                    <label class="visually-hidden">Password</label>
-                    <input type="password" id="passwordOne" class="form-control" placeholder="Password">
-                </div>
-                <div class="mb-3">
-                    <label class="visually-hidden">Confirm Password</label>
-                    <input type="password" id="passwordTwo" class="form-control" placeholder=" Confirm Password">
-                </div> -->
                 <div class="d-grid gap-2">
-                    <button onclick="checkPassword()" type="button" class="btn btn-primary fw-bolder">Sign up</button>
+                    <button id="signUpButton" onclick="checkPassword()" type="button"
+                        class="btn btn-primary fw-bolder">Sign up</button>
                 </div>
                 <div class="d-grid gap-2 col-6 mx-auto mt-3">
                     <button onclick="clearSingUpFields()" id="backBtn" type="button"
@@ -106,13 +96,26 @@
             </form>
         </div>
     </div>
-    <!-- Link google  -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
+
+    <!-- Script Tags -->
     <script>
+        // Decode JWT(Google OAuth)
         function CredentialHandling(response) {
             decodeJwtResponse(response.credential);
         }
+
+        // On click, decode the log in email address and check if it exists. If not, error out
+        document.getElementById('loginButton').addEventListener('click', function () {
+            decodeLoginFormResponse();
+        });
+        // On click, decode the sign up email address and check if it doesn't exists. If it does exist, error out
+        document.getElementById('signUpButton').addEventListener('click', function () {
+            decodeSignUpResponse();
+        });
     </script>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="GoogleOAuth.js"></script>
     <script src="jquery.min.js"></script>
     <script src="jquery.vide.js"></script>
     <script src="Toogle.js"></script>
