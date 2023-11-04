@@ -63,6 +63,21 @@ app.get('/initNewUser', (req, res) => {
       friends: [],
     };
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), 'utf8');
+    // Add the new user's email to the allusers.json file
+    const allUsersFileName = 'AllUsers/allusers.json';
+    let allUsers = [];
+
+    if (fs.existsSync(allUsersFileName)) {
+      // If the allusers.json file exists, read its content
+      const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
+      allUsers = JSON.parse(allUsersData);
+    }
+
+    // Append the new email to the array of all users
+    allUsers.push(email);
+
+    // Write the updated all users list back to allusers.json
+    fs.writeFileSync(allUsersFileName, JSON.stringify(allUsers, null, 2), 'utf8');
     res.json(userData);
   }
 });
@@ -91,6 +106,21 @@ app.get('/initUser', (req, res) => {
       friends: [],
     };
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), 'utf8');
+    // Add the new user's email to the allusers.json file
+    const allUsersFileName = 'AllUsers/allusers.json';
+    let allUsers = [];
+
+    if (fs.existsSync(allUsersFileName)) {
+      // If the allusers.json file exists, read its content
+      const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
+      allUsers = JSON.parse(allUsersData);
+    }
+
+    // Append the new email to the array of all users
+    allUsers.push(email);
+
+    // Write the updated all users list back to allusers.json
+    fs.writeFileSync(allUsersFileName, JSON.stringify(allUsers, null, 2), 'utf8');
     res.json(userData);
   }
 
