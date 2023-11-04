@@ -123,5 +123,25 @@ app.get('/initUser', (req, res) => {
     fs.writeFileSync(allUsersFileName, JSON.stringify(allUsers, null, 2), 'utf8');
     res.json(userData);
   }
-
 });
+
+// Handle requesting a user's site
+app.get("/getUser", (req, res) => {
+  const email = req.query.formEmail; // Get the new user's email
+  // Extract the user's name from the email, needed to set json file correctly
+  const name = email.split('@')[0];
+  // Folder name of user jsons
+  const usersFolder = 'Users';
+  // Join dir path
+  const jsonFileName = path.join(usersFolder, `${name}.json`); // Create the JSON file name
+
+  // Check if the JSON file exists
+  if (fs.existsSync(jsonFileName)) {
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, 'utf8'));
+    res.json(userData);
+  } else {
+    // User is not found
+    res.json({ error: 'User not found' });
+  }
+  
+  });
