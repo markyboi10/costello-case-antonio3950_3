@@ -5,7 +5,7 @@ function decodeJwtResponse(data) {
     // Check if the JWT data is valid
     if (jwtData && jwtData.email_verified === true) {
         // Redirect to a different user profile home page
-        fetch(`/initExistingUser?email=${jwtData.email}`)
+        fetch(`/initUser?email=${jwtData.email}`)
             .then(response => response.json())
             .then(data => {
                 localStorage.setItem('userData', JSON.stringify(data));

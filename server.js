@@ -66,3 +66,32 @@ app.get('/initNewUser', (req, res) => {
     res.json(userData);
   }
 });
+
+// Handle user google login
+app.get('/initUser', (req, res) => {
+  const email = req.query.email || req.query.formEmail; // Get the user's email from the request query
+  console.log(email);
+  // Extract the user's name from the email
+  const name = email.split('@')[0];
+
+  const usersFolder = 'Users';
+  const jsonFileName = path.join(usersFolder, `${name}.json`); // Create the JSON file name
+
+  // Check if the JSON file exists
+  if (fs.existsSync(jsonFileName)) {
+    // If the file exists, read its content
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, 'utf8'));
+    console.log('User data:', userData);
+    res.json(userData);
+  } else {
+    // If the file doesn't exist, create a new JSON file and initialize it
+    const userData = {
+      name: email,
+      videos: [],
+      friends: [],
+    };
+    fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), 'utf8');
+    res.json(userData);
+  }
+
+});
