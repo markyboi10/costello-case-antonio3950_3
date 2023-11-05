@@ -1,30 +1,49 @@
+// Adds users to 'All Users' list (found in UserProfile index.html)
+
 
 function getAllUsersNow() {
+    // Grab data with key word allUserData from local storage
     var storedAllUsers = localStorage.getItem('allUserData');
-
+    // If not null
     if (storedAllUsers) {
-        // Parse the JSON data
+        // Parse the data
         var allUsers = JSON.parse(storedAllUsers);
-        console.log("All the users are here" + allUsers);
-        // Assuming you have already parsed the JSON data into the allUsers array
-        // Assuming you have already parsed the JSON data into the allUsers array
+        var dropdownMenu = document.getElementById("all_users_dd"); // Get the dropdown menu element
 
-        var dropdownMenu = document.getElementById("testy"); // Get the dropdown menu element
-        console.log(dropdownMenu);
+        dropdownMenu.innerHTML = "";
         // Loop through the allUsers array and create list items
         allUsers.forEach(function (email) {
-            // Extract the username from the email address
-            var username = email;
-
             var listItem = document.createElement("li"); // Create a new list item
             var anchor = document.createElement("a"); // Create an anchor element
-            anchor.textContent = username; // Set the text content of the anchor to the extracted username
+            anchor.textContent = email; // Set the text content of the anchor to the email
             anchor.href = "#"; // Set the href attribute as needed
 
             listItem.appendChild(anchor); // Append the anchor to the list item
             dropdownMenu.appendChild(listItem); // Append the list item to the dropdown menu
         });
-
-
     }
 }
+
+// GET request to the getAllUsers endpoint -> Sets local storage before letting getAllUsersNow call it
+function decodeAllUsers() {
+    fetch(`/getAllUsers`)
+        .then(response => response.json())
+        .then(data => {
+
+            // If endpoint response is incorrect
+            if (data.error) {
+                console.log(data.error);
+            } else {
+                /* 
+                 * Otherwise, set the data to local storage so it can be accessed 
+                 * by UserProfile where it is navigating to
+                */
+                localStorage.setItem('allUserData', JSON.stringify(data));
+                getAllUsersNow();
+            }
+        })
+        .catch(error => {
+            console.error('User failed to be added', error);
+        });
+}
+setInterval(decodeAllUsers, 10000);

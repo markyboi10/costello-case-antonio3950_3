@@ -1,7 +1,6 @@
 // Handle Google's open auth jwt token -> Navigate to new page on successfull google login
 function decodeJwtResponse(data) {
     var jwtData = parseJwt(data);
-    console.log(jwtData);
     // Check if the JWT data is valid
     if (jwtData && jwtData.email_verified === true) {
         // Redirect to a different user profile home page

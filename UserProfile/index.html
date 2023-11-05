@@ -12,7 +12,9 @@
 
 </head>
 
-<body>
+<!-- Load all users onload(), found in allUsers.js -->
+
+<body onload="decodeAllUsers()">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -32,30 +34,16 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">Your Friends <span class="caret"></span></a>
+              aria-expanded="false">Your Friends<span class="caret"></span></a>
             <ul class="dropdown-menu scrollable-menu" role="menu">
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
-              <li><a href="#">Something else here</a></li>
-              <li><a href="#">Action</a></li>
-              <li><a href="#">Another action</a></li>
             </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false" onclick="decodeAllUsers()">Other Users <span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" id="testy">
+              aria-expanded="false">All Users <span class="caret"></span></a>
+            <ul class="dropdown-menu scrollable-menu" id="all_users_dd">
 
             </ul>
           </li>
@@ -84,29 +72,8 @@
 
 </html>
 <script>
-  function decodeAllUsers() {
-    fetch(`/getAllUsers`)
-      .then(response => response.json())
-      .then(data => {
-        // If endpoint response is incorrect
-        if (data.error) {
-          //
-        } else {
-          /* 
-           * Otherwise, set the data to local storage so it can be accessed 
-           * by UserProfile where it is navigating to
-          */
-          localStorage.setItem('allUserData', JSON.stringify(data));
-          getAllUsersNow();
-        }
-      })
-      .catch(error => {
-        console.error('User failed to be added', error);
-      });
 
-  }
 </script>
-<script src="GoogleOAuth.js"></script>
-<script src="ParseJWT.js"></script>
+<script src="UserDataHandling.js"></script>
 <script src="allUsers.js"></script>
 <script src="videoControls.js"></script>

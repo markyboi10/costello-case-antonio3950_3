@@ -1,4 +1,4 @@
-var storedUserData = localStorage.getItem('userData');
+var storedUserData = localStorage.getItem('userData'); // This item was set on login/sign up
 if (storedUserData) {
     // Parse the JSON data
     var userData = JSON.parse(storedUserData);
@@ -118,9 +118,7 @@ if (storedUserData) {
         console.log("No videos to show");
     }
 
-
     // Access and display the data
     document.getElementById('username').textContent = userData.name;
-    
 
 }

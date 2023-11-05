@@ -7,47 +7,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Link Bootstrap CSS -->
     <link href="bootstrap.css" rel="stylesheet">
-    <link href="bootstrap.min.css" rel="stylesheet">
-    <link href="bootstrap-grid.css" rel="stylesheet">
     <!-- Link Custom CSS-->
     <link href="style.css" rel="stylesheet">
-
-    <!-- Link Bootstrap and JQuery JS -->
-    <script src="jquery.min.js"></script>
-    <script src="bootstrap.min.js"></script>
     <!-- Origin Policy Links -->
     <meta name="referrer" content="no-referrer-when-downgrade">
     <meta name="Cross-Origin-Opener-Policy" content="*">
-    <!-- Google OAuth script -->
-    <script type="text/javascript" src="GoogleOAuth.js" defer></script>
     <!-- Proj. Title -->
-    <title>WebDevProj4</title>
+    <title>WebDevProj4-Login</title>
 
 </head>
 
-<!-- HTML content goes here -->
+<!-- HTML content goes here, contains bootstrap and custom css -->
 
-<body data-vide-bg="piggy">
+<body data-vide-bg="tree">
 
     <div class="container-fluid">
 
         <div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh">
+            <!-- Login Form, default display -->
             <form id='loginForm' class="rounded p-5 bg-light  col-lg-6 col-md-9 col-sm-12 ">
                 <div class="text-center mb-4 custom-font-size">
                     <h>
                         Log In
                     </h>
                 </div>
+                <!-- Email input field, on foucus out will validate email 
+                    with checkEmail() function found in Login_Signup.js -->
                 <div class="mb-3">
                     <label class="visually-hidden">Email Address</label>
                     <input type="email" id="emailAddress" class="form-control" placeholder="Email Address" required
                         autofocus onfocusout="checkEmail('emailAddress')">
                 </div>
-                <div id="emailError" class="error-message"></div>
-                <div id="successMessage" class="success-message"></div>
+                <!-- Login button -->
                 <div class="d-grid gap-2">
                     <button id="loginButton" type="button" class="btn btn-primary fw-bolder">Log in</button>
                 </div>
+                <!-- Google OAuth button -->
                 <div>
                     <div id="sign-in-container" class="mt-3">
                         <div id="g_id_onload"
@@ -63,9 +58,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <!-- Padding -->
                     <div class="border-top my-3 mt-4 mb-4"></div>
-
+                    <!-- Sign up button, clears login fields on click with clearLoginFields()
+                    found in Login_Signup.js -->
                     <div class="d-grid gap-2 col-6 mx-auto">
                         <button onclick="clearLoginFields()" id="createAccountBtn" type="button"
                             class="btn btn-success fw-bolder">Create New
@@ -74,23 +70,26 @@
                 </div>
             </form>
 
+            <!-- Sign up form, default as hidden until toggeled -->
             <form id="signupForm" class="rounded p-5 bg-light  col-lg-6 col-md-9 col-sm-12" style="display: none;">
                 <div class="text-center mb-4 custom-font-size">
                     <h>
                         Sign Up
                     </h>
                 </div>
+                <!-- Email input -->
                 <div class="mb-3">
                     <label class="visually-hidden">Email Address</label>
                     <input type="email" id="signupEmail" class="form-control" placeholder="Email Address" required
                         autofocus onfocusout="checkEmail('signupEmail')">
                 </div>
+                <!-- Sign up button -->
                 <div class="d-grid gap-2">
-                    <button id="signUpButton" onclick="checkPassword()" type="button"
-                        class="btn btn-primary fw-bolder">Sign up</button>
+                    <button id="signUpButton" type="button" class="btn btn-primary fw-bolder">Sign up</button>
                 </div>
+                <!-- Back button, clear email input field -->
                 <div class="d-grid gap-2 col-6 mx-auto mt-3">
-                    <button onclick="clearSingUpFields()" id="backBtn" type="button"
+                    <button onclick="clearSignUpFields()" id="backBtn" type="button"
                         class="btn btn-danger fw-bolder">Back</button>
                 </div>
             </form>
@@ -99,29 +98,40 @@
 
     <!-- Script Tags -->
     <script>
-
-        // Decode JWT(Google OAuth)
+        /* 
+         * Decode JWT(Google OAuth):
+         *  - In EmailHandling.js: Grab google oauth data respone and parse. 
+         *    Send in the parsed email address and call the initUser endpoint (server.js),
+         *    this is specific for google auth logins.
+        */
         function CredentialHandling(response) {
             decodeJwtResponse(response.credential);
-
         }
-
-        // On click, decode the log in email address and check if it exists. If not, error out
+        // On click, decode the LOG IN email address and check if it exists. If not, error out.
+        // * Similar to google auth but uses the email address from the log in form *
         document.getElementById('loginButton').addEventListener('click', function () {
+            //Function can be found In EmailHandling.jss
             decodeLoginFormResponse();
         });
-        // On click, decode the sign up email address and check if it doesn't exists. If it does exist, error out
+        // On click, decode the SIGN UP email address and check if it doesn't exists. If it does exist, error out
+        // * Same as login but uses the email address from the sign up form *
         document.getElementById('signUpButton').addEventListener('click', function () {
+            //Function can be found In EmailHandling.js
             decodeSignUpResponse();
         });
-    </script>
 
+    </script>
+    <!-- Google Script Src -->
     <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <script src="GoogleOAuth.js"></script>
-    <script src="jquery.min.js"></script>
-    <script src="jquery.vide.js"></script>
-    <script src="Toogle.js"></script>
+    <!-- Custom Script Srcs -->
+    <script src="EmailHandling.js"></script>
+    <script src="Login_Signup.js"></script>
     <script src="allUsers.js"></script>
+    <!-- Link Bootstrap and JQuery JS -->
+    <script src="jquery.min.js"></script>
+    <script src="bootstrap.min.js"></script>
+    <script src="jquery.vide.js"></script>
+
 </body>
 
 </html>
