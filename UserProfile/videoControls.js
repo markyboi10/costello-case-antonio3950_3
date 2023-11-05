@@ -101,13 +101,10 @@ if (storedUserData) {
     document.getElementById('username').textContent = userData.name;
 
     function addVideo() {
-
-        console.log(userData);
         const videoUrl = document.getElementById("video-url").value;
-        const videoDescription = document.getElementById("video-description").value;
-      
+        const videoDescription = document.getElementById("video-description").value;  
         const userName = userData.name;
-        console.log(videoUrl, userName);
+    
         fetch("/add-video", {
           method: "post",
           headers: {
@@ -119,10 +116,15 @@ if (storedUserData) {
             videoDescription,
             userName,
           }),
-        }).then((response) => {
-            //TODO: refreshPage();
+        }).then(() => {
+            const videoData = {
+                src: videoUrl,
+                description: videoDescription,
+                comments:[]
+            };
+            addToOtherVids(videoData);    
         });
-      }
+    }
 
     if (userData.videos.length != 0) {
         makePrimaryVideo(userData.videos[0]);

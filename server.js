@@ -182,7 +182,7 @@ app.post("/add-video", (req, res) => {
     userData.videos.push(videoData);
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
 
-     res.status(200)
+    res.sendStatus(200);
   } else {
     // User is not found
     res.json({ error: "User not found" });
