@@ -99,21 +99,20 @@
 
     <!-- Script Tags -->
     <script>
+
         // Decode JWT(Google OAuth)
         function CredentialHandling(response) {
             decodeJwtResponse(response.credential);
-            decodeAllUsers();
+
         }
 
         // On click, decode the log in email address and check if it exists. If not, error out
         document.getElementById('loginButton').addEventListener('click', function () {
             decodeLoginFormResponse();
-            decodeAllUsers();
         });
         // On click, decode the sign up email address and check if it doesn't exists. If it does exist, error out
         document.getElementById('signUpButton').addEventListener('click', function () {
             decodeSignUpResponse();
-            decodeAllUsers();
         });
     </script>
 
