@@ -127,7 +127,7 @@ app.get('/initUser', (req, res) => {
 
 // Handle requesting a user's site
 app.get("/getUser", (req, res) => {
-  const email = req.query.formEmail; // Get the new user's email
+  const email = req.query.selectedEmail; // Get the new user's email
   // Extract the user's name from the email, needed to set json file correctly
   const name = email.split('@')[0];
   // Folder name of user jsons
@@ -143,5 +143,21 @@ app.get("/getUser", (req, res) => {
     // User is not found
     res.json({ error: 'User not found' });
   }
-  
-  });
+
+});
+
+// Handle requesting a user's site
+app.get("/getAllUsers", (req, res) => {
+  const allUsersFileName = 'AllUsers/allusers.json';
+
+  if (fs.existsSync(allUsersFileName)) {
+    // If the allusers.json file exists, read its content
+    const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
+    allUsers = JSON.parse(allUsersData);
+    console.log(allUsers);
+    res.json(allUsers);
+  } else {
+    res.json({ error: 'Error in returning all users' });
+  }
+
+});
