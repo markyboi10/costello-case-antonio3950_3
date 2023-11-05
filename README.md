@@ -3,13 +3,10 @@
 ### To run locally
 
 Install npm packages:<br/>
-`npm install`
+`npm install` and any required modules
 
-Start the local server for the client on port 8000:<br/>
-`python -m http.server 8000`
-
-Start the backend server on port 5007:<br/>
+Start the backend server on port 5007 by going to root folder and running from the cmd line:<br/>
 `node server.js`
 
 Visit:<br/>
-`http://localhost:8000/Login`
+`http://localhost:5007`
