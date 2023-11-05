@@ -12,7 +12,7 @@ if (storedUserData) {
 
         if(currVideo != null)
         {
-            addToOtherVids(currVideo);
+            toggleDisplay(currVideo);
             // If a video is selected, clear it
             videoContainer.innerHTML = "";
             commentsContainer.innerHTML = "";
@@ -77,17 +77,26 @@ if (storedUserData) {
         otherVidsContainer.appendChild(videoDiv);
     }
 
-    function changeToVideo(video)
+    function toggleDisplay(video)
     {
         var otherVidsContainer = document.getElementsByClassName("other-vids-container")[0];
 
-        // Remove the video from otherVids
+        // Toggle the display of the video
         for(let i in otherVidsContainer.childNodes)
         {
             let child = otherVidsContainer.childNodes[i]; // Get the div
             if(child.containedVideo == video)
-                otherVidsContainer.removeChild(child);
+                if(child.style.display == "none")
+                    child.style.display = "block";
+                else
+                    child.style.display = "none";
         }
+    }
+
+    function changeToVideo(video)
+    {
+        // Remove the video from visibility on the right-hand side
+        toggleDisplay(video);
 
         // Set the primary video
         makePrimaryVideo(video);
@@ -98,7 +107,7 @@ if (storedUserData) {
     
     if(userData.videos.length != 0)
     {
-        makePrimaryVideo(userData.videos[0])
+        makePrimaryVideo(userData.videos[0]);
 
         if(userData.videos.length > 1)
             // Fill all the other videos to the selection panel
