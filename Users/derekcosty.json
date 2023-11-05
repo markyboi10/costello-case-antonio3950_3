@@ -3,7 +3,7 @@
   "videos": [
 	{
 		"src" : "https://www.youtube.com/embed/74Ec1Wu3PZQ?si=EeoIRZb_WiSkLCf_",
-		"description" : "Hello, World!",
+		"description" : "Doublelift's newest video",
 		"comments" : [
 			{
 				"user" : "John Doe",
@@ -16,8 +16,8 @@
 		]
 	},
 	{
-		"description" : "",
 		"src" : "https://www.youtube.com/embed/mwKJfNYwvm8?si=ey2m9NIxy4bwPSPe",
+		"description" : "Mr. Beast's Latest Video",
 		"comments" : [
 			{
 				"user" : "H8tr2themax",
