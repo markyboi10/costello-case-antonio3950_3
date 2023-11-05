@@ -118,10 +118,7 @@ if (storedUserData) {
                 var video = userData.videos[i];
                 var vidDiv = addToOtherVids(video);
                 if(i === 0)
-                {
-                    console.log(vidDiv.containedVideo.description);
                     vidDiv.style.display = "none";
-                }
             }
     }
     else {
