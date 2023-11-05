@@ -1,0 +1,34 @@
+{
+  "name": "derekcosty@gmail.com",
+  "videos": [
+	{
+		"src" : "https://www.youtube.com/embed/74Ec1Wu3PZQ?si=EeoIRZb_WiSkLCf_",
+		"description" : "Doublelift's newest video",
+		"comments" : [
+			{
+				"user" : "John Doe",
+				"content" : "I hate this guy's videos. Why post him?"
+			},
+			{
+				"user" : "Jane Doe",
+				"content" : "I love this type of content! Keep up the sharing!"
+			}
+		]
+	},
+	{
+		"src" : "https://www.youtube.com/embed/mwKJfNYwvm8?si=ey2m9NIxy4bwPSPe",
+		"description" : "Mr. Beast's Latest Video",
+		"comments" : [
+			{
+				"user" : "H8tr2themax",
+				"content" : "I hate this GUY!!!?"
+			},
+			{
+				"user" : "Love Mr. Beast!!",
+				"content" : "LOVE YOU BEASTY!!!"
+			}
+		]
+	}
+  ],
+  "friends": []
+}

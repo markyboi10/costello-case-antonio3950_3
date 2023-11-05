@@ -33,13 +33,25 @@ footer {
   width: 100%;
   border: 1px solid black;
 }
-
+.video-container iframe {
+  position: relative;
+  height: 75%;
+  width: 100%;
+}
 .comments-container {
   height: 40%;
   width: 100%;
   border: 1px solid black;
 }
 
+.other-vids-container img {
+  height: 150px;
+  width: auto;
+}
+
+.other-vids-container img, a {
+  cursor: pointer;
+}
 .scrollable-menu {
   height: auto;
   max-height: 200px;
