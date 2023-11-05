@@ -75,6 +75,8 @@ if (storedUserData) {
         videoDiv.containedVideo = video;
 
         otherVidsContainer.appendChild(videoDiv);
+
+        return videoDiv;
     }
 
     function toggleDisplay(video)
@@ -111,10 +113,15 @@ if (storedUserData) {
 
         if(userData.videos.length > 1)
             // Fill all the other videos to the selection panel
-            for(let i = 1; i < userData.videos.length; i++)
+            for(let i = 0; i < userData.videos.length; i++)
             {
                 var video = userData.videos[i];
-                addToOtherVids(video);
+                var vidDiv = addToOtherVids(video);
+                if(i === 0)
+                {
+                    console.log(vidDiv.containedVideo.description);
+                    vidDiv.style.display = "none";
+                }
             }
     }
     else {
