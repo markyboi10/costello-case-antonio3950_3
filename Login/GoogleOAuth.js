@@ -81,24 +81,3 @@ function decodeSignUpResponse() {
         });
 
 }
-
-function decodeAllUsers() {
-    fetch(`/getAllUsers`)
-        .then(response => response.json())
-        .then(data => {
-            // If endpoint response is incorrect
-            if (data.error) {
-                //
-            } else {
-                /* 
-                 * Otherwise, set the data to local storage so it can be accessed 
-                 * by UserProfile where it is navigating to
-                */
-                localStorage.setItem('allUserData', JSON.stringify(data));
-            }
-        })
-        .catch(error => {
-            console.error('User failed to be added', error);
-        });
-
-}

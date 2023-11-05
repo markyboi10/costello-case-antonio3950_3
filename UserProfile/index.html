@@ -9,6 +9,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="user-profile-styles.css" />
+
 </head>
 
 <body>
@@ -53,8 +54,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-
-              aria-expanded="false">Other Users <span class="caret"></span></a>
+              aria-expanded="false" onclick="decodeAllUsers()">Other Users <span class="caret"></span></a>
             <ul class="dropdown-menu" id="testy">
 
             </ul>
@@ -83,6 +83,30 @@
 </body>
 
 </html>
+<script>
+  function decodeAllUsers() {
+    fetch(`/getAllUsers`)
+      .then(response => response.json())
+      .then(data => {
+        // If endpoint response is incorrect
+        if (data.error) {
+          //
+        } else {
+          /* 
+           * Otherwise, set the data to local storage so it can be accessed 
+           * by UserProfile where it is navigating to
+          */
+          localStorage.setItem('allUserData', JSON.stringify(data));
+          getAllUsersNow();
+        }
+      })
+      .catch(error => {
+        console.error('User failed to be added', error);
+      });
+
+  }
+</script>
+<script src="GoogleOAuth.js"></script>
 <script src="ParseJWT.js"></script>
 <script src="allUsers.js"></script>
 <script src="videoControls.js"></script>

@@ -154,6 +154,7 @@ app.get("/getAllUsers", (req, res) => {
     // If the allusers.json file exists, read its content
     const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
     allUsers = JSON.parse(allUsersData);
+    console.log("test");
     console.log(allUsers);
     res.json(allUsers);
   } else {
