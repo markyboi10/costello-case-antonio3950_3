@@ -4,6 +4,9 @@ const port = 5007;
 const fs = require('fs');
 const path = require('path');
 
+// In order to read the body from the POST request
+app.use(express.json());
+
 // Serve static files from a directory -> (HTML, CSS, JS)
 app.use(express.static('Login'));
 
@@ -161,4 +164,27 @@ app.get("/getAllUsers", (req, res) => {
     res.json({ error: 'Error in returning all users' });
   }
 
+});
+
+app.post("/add-video", (req, res) => {
+  let { videoUrl, videoDescription, userName } = req.body;
+
+  userName = userName.split("@")[0];
+  const jsonFileName = path.join("Users", `${userName}.json`); // Create the JSON file name
+
+  if (fs.existsSync(jsonFileName)) {
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, "utf8"));
+    const videoData = {
+      src: videoUrl,
+      description: videoDescription,
+      comments: [],
+    };
+    userData.videos.push(videoData);
+    fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
+
+     res.status(200)
+  } else {
+    // User is not found
+    res.json({ error: "User not found" });
+  }
 });

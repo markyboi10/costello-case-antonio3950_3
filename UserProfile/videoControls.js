@@ -97,6 +97,32 @@ if (storedUserData) {
         makePrimaryVideo(video);
     }
 
+    // Access and display the data
+    document.getElementById('username').textContent = userData.name;
+
+    function addVideo() {
+
+        console.log(userData);
+        const videoUrl = document.getElementById("video-url").value;
+        const videoDescription = document.getElementById("video-description").value;
+      
+        const userName = userData.name;
+        console.log(videoUrl, userName);
+        fetch("/add-video", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            videoUrl,
+            videoDescription,
+            userName,
+          }),
+        }).then((response) => {
+            //TODO: refreshPage();
+        });
+      }
 
     if (userData.videos.length != 0) {
         makePrimaryVideo(userData.videos[0]);
@@ -114,7 +140,7 @@ if (storedUserData) {
         console.log("No videos to show");
     }
 
-}
-else {
-    console.log("User data could not be loaded.");
+    // Access and display the data
+    document.getElementById('username').textContent = userData.name;
+
 }

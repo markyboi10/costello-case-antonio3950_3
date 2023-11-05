@@ -63,7 +63,15 @@
       <div class="col-sm-4" style="height: 100%; border: 1px solid black">
         <h4>My favorite videos</h4>
         <div class="other-vids-container">
-
+          <form>
+            <input type="text" id="video-url" placeholder="YouTube URL" />
+            <input
+              type="text"
+              id="video-description"
+              placeholder="Description"
+            />
+            <input type="button" value="Add New Video" onclick="addVideo()" />
+          </form>
         </div>
       </div>
     </div>
@@ -74,6 +82,5 @@
 <script>
 
 </script>
-<script src="UserDataHandling.js"></script>
 <script src="allUsers.js"></script>
 <script src="videoControls.js"></script>
