@@ -54,11 +54,16 @@
   <div class="container-fluid">
     <div class="row content">
       <div class="col-sm-8 sidenav">
-        <div class="video-container">
+        <div id="video-container">
           <p><strong>Username:</strong> <span id="username"></span></p>
           <p><strong>Email:</strong> <span id="email"></span></p>
         </div>
-        <div class="comments-container"></div>
+        <div id="comments-container">
+          <form>
+            <input type="text" id="user-comment" placeholder="Comment" />
+            <input type="button" value="Add Comment" onclick="addComment()" />
+          </form>
+        </div>
       </div>
       <div class="col-sm-4" style="height: 100%; border: 1px solid black">
         <h4>My favorite videos</h4>

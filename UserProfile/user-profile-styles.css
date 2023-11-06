@@ -28,17 +28,17 @@ footer {
   }
 }
 
-.video-container {
+#video-container {
   height: 60%;
   width: 100%;
   border: 1px solid black;
 }
-.video-container iframe {
+#video-container iframe {
   position: relative;
   height: 75%;
   width: 100%;
 }
-.comments-container {
+#comments-container {
   height: 40%;
   width: 100%;
   border: 1px solid black;

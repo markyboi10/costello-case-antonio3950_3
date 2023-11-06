@@ -6,8 +6,8 @@ if (storedUserData) {
     var currVideo;
 
     function makePrimaryVideo(video) {
-        var videoContainer = document.getElementsByClassName('video-container')[0];
-        var commentsContainer = document.getElementsByClassName('comments-container')[0];
+        var videoContainer = document.getElementById('video-container');
+        var commentsContainer = document.getElementById('comments-container');
 
         if (currVideo != null) {
             toggleDisplay(currVideo);
@@ -27,19 +27,7 @@ if (storedUserData) {
         videoContainer.appendChild(primDesc);
 
         // Add the comments to the primary video
-        for (let i in video.comments) {
-            var comment = document.createElement('div');
-            var commentUser = document.createElement('h3');
-            var commentContent = document.createElement('p');
-
-            commentUser.appendChild(document.createTextNode(video.comments[i].user));
-            commentContent.appendChild(document.createTextNode(video.comments[i].content));
-
-            comment.appendChild(commentUser);
-            comment.appendChild(commentContent);
-
-            commentsContainer.appendChild(comment);
-        }
+        video.comments.map(comment=> createComment(comment));
 
         currVideo = video;
     }
@@ -97,6 +85,22 @@ if (storedUserData) {
         makePrimaryVideo(video);
     }
 
+    function createComment(commentData) {
+        var commentsContainer = document.getElementById('comments-container');
+
+        var comment = document.createElement('div');
+        var commentUser = document.createElement('h3');
+        var commentContent = document.createElement('p');
+
+        commentUser.appendChild(document.createTextNode(commentData.user));
+        commentContent.appendChild(document.createTextNode(commentData.content));
+
+        comment.appendChild(commentUser);
+        comment.appendChild(commentContent);
+
+        commentsContainer.appendChild(comment);
+    }
+
     // Access and display the data
     document.getElementById('username').textContent = userData.name;
 
@@ -123,6 +127,38 @@ if (storedUserData) {
                 comments:[]
             };
             addToOtherVids(videoData);    
+        });
+    }
+
+    function addComment(){
+        // Get the video url from the iframe
+        const videoUrl = document
+        .getElementById("video-container")
+        .getElementsByTagName("iframe")[0]
+        .getAttribute("src");
+
+        const comment = document.getElementById("user-comment").value;
+        const userName = userData.name; //TODO: replace with the name of the user being commented on
+        const commentUser = userData.name;
+    
+        fetch("/add-comment", {
+          method: "post",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            videoUrl, 
+            userName,
+            comment, 
+            commentUser
+          }),
+        }).then(() => {
+            const commentData = {
+                user: commentUser.split('@')[0],
+                content: comment
+            };
+           createComment(commentData);  
         });
     }
 

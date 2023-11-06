@@ -188,3 +188,26 @@ app.post("/add-video", (req, res) => {
     res.json({ error: "User not found" });
   }
 });
+
+app.post("/add-comment", (req, res) => {
+  let { userName, videoUrl, commentUser, comment } = req.body;
+
+  userName = userName.split("@")[0];
+  commentUser = commentUser.split("@")[0];
+
+  const jsonFileName = path.join("Users", `${userName}.json`);
+  if (fs.existsSync(jsonFileName)) {
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, "utf8"));
+    const commentData = {
+      user: commentUser,
+      content: comment
+    }
+    userData.videos.find(video=> video.src === videoUrl).comments.push(commentData);
+    fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
+
+    res.sendStatus(200);
+  } else {
+      // User is not found
+      res.json({ error: "User not found" });
+    }
+});
