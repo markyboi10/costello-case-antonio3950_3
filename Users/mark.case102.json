@@ -1,5 +1,26 @@
 {
   "name": "mark.case102@gmail.com",
-  "videos": [],
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/EhhOin2p5Qs?si=ySptI93uMh9o9aWc",
+      "description": "Engineering",
+      "comments": [
+        {
+          "user": "mark.case102",
+          "content": "Wow so cool"
+        }
+      ]
+    },
+    {
+      "src": "https://www.youtube.com/embed/U7qnSoW3wXI?si=QHZvwXlWZlCBrySM",
+      "description": "SEMA Car show",
+      "comments": []
+    },
+    {
+      "src": "https://www.youtube.com/embed/ordDhoTAa1Y?si=aPlkO1BQomDCmBpm",
+      "description": "Lagnua Seca Prep",
+      "comments": []
+    }
+  ],
   "friends": []
 }
