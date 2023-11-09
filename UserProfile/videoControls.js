@@ -8,6 +8,7 @@ if (storedUserData) {
   function makePrimaryVideo(video) {
     var videoContainer = document.getElementById("video-container");
     var commentsContainer = document.getElementById("comments-container");
+    document.getElementById("add-comment-form").style.display = "block"; // Shows the comment form when a primary video is set
 
     if (currVideo != null) {
       toggleDisplay(currVideo);
@@ -173,17 +174,21 @@ if (storedUserData) {
   if (userData.videos.length != 0) {
     makePrimaryVideo(userData.videos[0]);
 
-    if (userData.videos.length > 1)
+    if (userData.videos.length > 1) {
       // Fill all the other videos to the selection panel
       for (let i = 0; i < userData.videos.length; i++) {
         var video = userData.videos[i];
         var vidDiv = addToOtherVids(video);
         if (i === 0) vidDiv.style.display = "none";
       }
+    }
   } else {
     console.log("No videos to show");
+    document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
   }
 
   // Access and display the data
-  document.getElementById("username").textContent = userData.name;
+  document.getElementById("username").textContent = userData.name.split("@")[0]; // Split just show the username before the @
+  anchor.href = "#"; // Set the href attribute as needed
+  document.getElementById("email").textContent = userData.name; //Shows the user email
 }
