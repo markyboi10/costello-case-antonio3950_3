@@ -101,7 +101,7 @@ if (storedUserData) {
     comment.appendChild(commentUser);
     comment.appendChild(commentContent);
 
-    commentsContainer.appendChild(comment);
+    commentsContainer.prepend(comment);
   }
 
   // Access and display the data

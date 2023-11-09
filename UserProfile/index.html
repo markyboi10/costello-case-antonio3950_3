@@ -1,73 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>My Profile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="user-profile-styles.css" />
+  </head>
 
-<head>
-  <title>My Profile</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="user-profile-styles.css" />
+  <!-- Load all users onload(), found in allUsers.js -->
 
-</head>
-
-<!-- Load all users onload(), found in allUsers.js -->
-
-<body onload="decodeAllUsers()">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#">My Profile</a>
-      </div>
-
-      <!-- nav bar -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">Your Friends<span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" role="menu">
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">All Users <span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" id="all_users_dd">
-
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid">
-    <div class="row content">
-      <div class="col-sm-8 sidenav">
-        <div id="video-container">
-          <p><strong>Username:</strong> <span id="username"></span></p>
-          <p><strong>Email:</strong> <span id="email"></span></p>
+  <body onload="decodeAllUsers()">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">My Profile</a>
         </div>
-        <div id="comments-container">
+
+        <!-- nav bar -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Your Friends<span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu scrollable-menu" role="menu"></ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >All Users <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu scrollable-menu" id="all_users_dd"></ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-8 sidenav">
+          <div id="video-container">
+            <p><strong>Username:</strong> <span id="username"></span></p>
+            <p><strong>Email:</strong> <span id="email"></span></p>
+          </div>
           <form>
             <input type="text" id="user-comment" placeholder="Comment" />
             <input type="button" value="Add Comment" onclick="addComment()" />
           </form>
+          <div id="comments-container"></div>
         </div>
-      </div>
-      <div class="col-sm-4" style="height: 100%; border: 1px solid black">
-        <h4>My favorite videos</h4>
-        <div class="other-vids-container">
+        <div class="col-sm-4">
+          <h4>My favorite videos</h4>
           <form>
             <input type="text" id="video-url" placeholder="YouTube URL" />
             <input
@@ -77,15 +92,12 @@
             />
             <input type="button" value="Add New Video" onclick="addVideo()" />
           </form>
+          <div class="other-vids-container"></div>
         </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
-<script>
-
-</script>
+<script></script>
 <script src="allUsers.js"></script>
 <script src="videoControls.js"></script>
