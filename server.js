@@ -164,8 +164,7 @@ app.get("/getAllUsers", (req, res) => {
     // If the allusers.json file exists, read its content
     const allUsersData = fs.readFileSync(allUsersFileName, "utf8");
     allUsers = JSON.parse(allUsersData);
-    console.log("test");
-    console.log(allUsers);
+
     res.json(allUsers);
   } else {
     res.json({ error: "Error in returning all users" });
@@ -211,6 +210,20 @@ app.post("/add-comment", (req, res) => {
     userData.videos
       .find((video) => video.src === videoUrl)
       .comments.push(commentData);
+    fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
+
+    res.sendStatus(200);
+  } else {
+    // User is not found
+    res.json({ error: "User not found" });
+  }
+});
+app.post("/add-friend", (req, res) => {
+  let { userName, friendUsername } = req.body;
+  const jsonFileName = path.join("Users", `${userName}.json`);
+  if (fs.existsSync(jsonFileName)) {
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, "utf8"));
+    userData.friends.push(friendUsername);
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
 
     res.sendStatus(200);
