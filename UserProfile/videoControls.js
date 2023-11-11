@@ -145,7 +145,7 @@ if (storedUserData) {
       .getAttribute("src");
 
     const comment = document.getElementById("user-comment").value;
-    const userName = userData.name; //TODO: replace with the name of the user being commented on
+    const userName = localStorage.getItem("loginEmail");
     const commentUser = userData.name;
 
     fetch("/add-comment", {
@@ -189,6 +189,5 @@ if (storedUserData) {
 
   // Access and display the data
   document.getElementById("username").textContent = userData.name.split("@")[0]; // Split just show the username before the @
-  anchor.href = "#"; // Set the href attribute as needed
   document.getElementById("email").textContent = userData.name; //Shows the user email
 }

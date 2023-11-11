@@ -42,6 +42,38 @@ function visitOtherUser(userName) {
       console.error("User failed to be added", error);
     });
 }
+function addFriend() {
+  const friendUsername = document.getElementById("username").textContent;
+  const userName = localStorage.getItem("loginEmail").split("@")[0];
+  fetch("/add-friend", {
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userName,
+      friendUsername,
+    }),
+  }).then(() => {
+    addToFriendsList(friendUsername); // Append the list item to the dropdown menu
+  });
+}
+
+function addToFriendsList(friendUsername) {
+  var dropdownMenu = document.getElementById("friends-list"); // Get the dropdown menu element
+
+  // Loop through the allUsers array and create list items
+  var listItem = document.createElement("li"); // Create a new list item
+
+  listItem.addEventListener("click", () => visitOtherUser(email)); // Add an event listener with a callback to visit other user when clicking the user name
+  var anchor = document.createElement("a"); // Create an anchor element
+  anchor.textContent = friendUsername; // Set the text content of the anchor to the email, split just show the username before the @
+  anchor.href = "#"; // Set the href attribute as needed
+
+  listItem.appendChild(anchor); // Append the anchor to the list item
+  dropdownMenu.appendChild(listItem);
+}
 
 // GET request to the getAllUsers endpoint -> Sets local storage before letting getAllUsersNow call it
 function decodeAllUsers() {
