@@ -165,6 +165,9 @@ app.get("/getAllUsers", (req, res) => {
     const allUsersData = fs.readFileSync(allUsersFileName, "utf8");
     allUsers = JSON.parse(allUsersData);
 
+    console.log("fetch");
+    console.log(allUsers);
+
     res.json(allUsers);
   } else {
     res.json({ error: "Error in returning all users" });
@@ -205,11 +208,11 @@ app.post("/add-comment", (req, res) => {
     const userData = JSON.parse(fs.readFileSync(jsonFileName, "utf8"));
     const commentData = {
       user: commentUser,
-      content: comment,
-    };
-    userData.videos
-      .find((video) => video.src === videoUrl)
-      .comments.push(commentData);
+
+      content: comment
+
+    userData.videos.find(video => video.src === videoUrl).comments.push(commentData);
+
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
 
     res.sendStatus(200);
@@ -217,6 +220,35 @@ app.post("/add-comment", (req, res) => {
     // User is not found
     res.json({ error: "User not found" });
   }
+});
+
+
+
+app.get('/sse-routine-new-users', (req, res) => {
+  res.setHeader('Content-Type', 'text/event-stream');
+  res.setHeader('Cache-Control', 'no-cache');
+  res.setHeader('Connection', 'keep-alive');
+
+  // Check for new data at the regular interval of 2 seconds
+  const interval = setInterval(() => {
+    const allUsersFileName = 'AllUsers/allusers.json'; // File path
+
+    if (fs.existsSync(allUsersFileName)) {
+
+      const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
+      const newData = JSON.parse(allUsersData);
+
+      console.log("sse");
+      console.log(allUsersData);
+      res.write(`data: ${JSON.stringify(newData)}\n\n`);
+
+    }
+  }, 2000); // 2000ms = 2sec
+
+  // Close the connection on client disconnect
+  req.on('close', () => {
+    clearInterval(interval);
+  });
 });
 app.post("/add-friend", (req, res) => {
   let { userName, friendUsername } = req.body;
@@ -232,3 +264,4 @@ app.post("/add-friend", (req, res) => {
     res.json({ error: "User not found" });
   }
 });
+
