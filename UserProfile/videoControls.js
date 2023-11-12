@@ -37,6 +37,7 @@ if (storedUserData) {
   function addToOtherVids(video) {
     // Regex for finding the video id of each video
     const regex = /embed\/([^?]+)/;
+    var videoId = regex.exec(video.src)[1];
 
     var otherVidsContainer = document.getElementsByClassName(
       "other-vids-container"
@@ -50,7 +51,6 @@ if (storedUserData) {
     vidDescAnchor.addEventListener("click", () => changeToVideo(video));
 
     var thumbnail = document.createElement("img");
-    var videoId = regex.exec(video.src)[1];
 
     thumbnail.src =
       "https://img.youtube.com/vi/" + videoId + "/maxresdefault.jpg";
@@ -112,6 +112,13 @@ if (storedUserData) {
     const videoUrl = document.getElementById("video-url").value;
     const videoDescription = document.getElementById("video-description").value;
     const userName = userData.name;
+    const regex = /embed\/([^?]+)/;
+
+    const videoId = regex.exec(videoUrl);
+    if (!videoId || videoId.length < 1) {
+      alert("Invalid Youtube Video Embed URL");
+      return null;
+    }
 
     fetch("/add-video", {
       method: "post",
@@ -130,7 +137,7 @@ if (storedUserData) {
         description: videoDescription,
         comments: [],
       };
-      if (video.src) {
+      if (videoUrl) {
         addToOtherVids(videoData);
       }
     });
