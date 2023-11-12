@@ -130,7 +130,9 @@ if (storedUserData) {
         description: videoDescription,
         comments: [],
       };
-      addToOtherVids(videoData);
+      if (video.src) {
+        addToOtherVids(videoData);
+      }
     });
     // Clear placeholder of comment after clicking the button to enter video and description
     document.getElementById("video-url").value = "";
@@ -178,7 +180,9 @@ if (storedUserData) {
       // Fill all the other videos to the selection panel
       for (let i = 0; i < userData.videos.length; i++) {
         var video = userData.videos[i];
-        var vidDiv = addToOtherVids(video);
+        if (video.src) {
+          var vidDiv = addToOtherVids(video);
+        }
         if (i === 0) vidDiv.style.display = "none";
       }
     }

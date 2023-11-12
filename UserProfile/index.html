@@ -77,9 +77,9 @@
     <div class="container-fluid">
       <div class="row content">
         <div class="col-sm-8 sidenav">
+          <p><strong>Username:</strong> <span id="username"></span></p>
+          <p><strong>Email:</strong> <span id="email"></span></p>
           <div id="video-container">
-            <p><strong>Username:</strong> <span id="username"></span></p>
-            <p><strong>Email:</strong> <span id="email"></span></p>
             <button id="add-friend-btn" onclick="addFriend()">
               Add Friend
             </button>
@@ -93,11 +93,15 @@
         <div class="col-sm-4">
           <h4>My favorite videos</h4>
           <form id="add-video-form">
-            <input type="text" id="video-url" placeholder="YouTube URL" />
+            <input
+              type="text"
+              id="video-url"
+              placeholder="YouTube Embedded URL"
+            />
             <input
               type="text"
               id="video-description"
-              placeholder="Description"
+              placeholder="Video Description"
             />
             <input type="button" value="Add New Video" onclick="addVideo()" />
           </form>
