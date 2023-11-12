@@ -1,52 +1,54 @@
-// // Adds users to 'All Users' list (found in UserProfile index.html)
+// Function to get the user info to visit other user's page
+function visitOtherUser(userName) {
+  fetch(`/getUser?selectedEmail=${userName}`)
+    .then((response) => response.json())
+    .then((data) => {
+      // If endpoint response is incorrect
+      if (data.error) {
+        console.log(data.error);
+      } else {
+        console.log(data);
+        localStorage.setItem("userData", JSON.stringify(data));
+        window.location.href = "/UserProfile/index.html";
+      }
+    })
+    .catch((error) => {
+      console.error("User failed to be added", error);
+    });
+}
+function addFriend() {
+  const friendUsername = document.getElementById("username").textContent;
+  const userName = localStorage.getItem("loginEmail").split("@")[0];
+  fetch("/add-friend", {
+    method: "post",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      userName,
+      friendUsername,
+    }),
+  }).then(() => {
+    addToFriendsList(friendUsername); // Append the list item to the dropdown menu
+  });
+}
 
+function addToFriendsList(friendUsername) {
+  var dropdownMenu = document.getElementById("friends-list"); // Get the dropdown menu element
 
-// function getAllUsersNow() {
-//     // Grab data with key word allUserData from local storage
-//     var storedAllUsers = localStorage.getItem('allUserData');
-//     // If not null
-//     if (storedAllUsers) {
-//         // Parse the data
-//         var allUsers = JSON.parse(storedAllUsers);
-//         var dropdownMenu = document.getElementById("all_users_dd"); // Get the dropdown menu element
+  // Loop through the allUsers array and create list items
+  var listItem = document.createElement("li"); // Create a new list item
 
-//         dropdownMenu.innerHTML = "";
-//         // Loop through the allUsers array and create list items
-//         allUsers.forEach(function (email) {
-//             var listItem = document.createElement("li"); // Create a new list item
-//             var anchor = document.createElement("a"); // Create an anchor element
-//             anchor.textContent = email; // Set the text content of the anchor to the email
-//             anchor.href = "#"; // Set the href attribute as needed
+  listItem.addEventListener("click", () => visitOtherUser(email)); // Add an event listener with a callback to visit other user when clicking the user name
+  var anchor = document.createElement("a"); // Create an anchor element
+  anchor.textContent = friendUsername; // Set the text content of the anchor to the email, split just show the username before the @
+  anchor.href = "#"; // Set the href attribute as needed
 
-//             listItem.appendChild(anchor); // Append the anchor to the list item
-//             dropdownMenu.appendChild(listItem); // Append the list item to the dropdown menu
-//         });
-//     }
-// }
+  listItem.appendChild(anchor); // Append the anchor to the list item
+  dropdownMenu.appendChild(listItem);
+}
 
-// // GET request to the getAllUsers endpoint -> Sets local storage before letting getAllUsersNow call it
-// function decodeAllUsers() {
-//     fetch(`/getAllUsers`)
-//         .then(response => response.json())
-//         .then(data => {
-
-//             // If endpoint response is incorrect
-//             if (data.error) {
-//                 console.log(data.error);
-//             } else {
-//                 /* 
-//                  * Otherwise, set the data to local storage so it can be accessed 
-//                  * by UserProfile where it is navigating to
-//                 */
-//                 localStorage.setItem('allUserData', JSON.stringify(data));
-//                 getAllUsersNow();
-//             }
-//         })
-//         .catch(error => {
-//             console.error('User failed to be added', error);
-//         });
-// }
-// setInterval(decodeAllUsers, 10000);
 function decodeAllUsers() {
     fetch(`/getAllUsers`)
         .then(response => response.json())
@@ -95,6 +97,7 @@ function updateUI(newData) {
     dropdownMenu.innerHTML = ""; // Clear list so it is not beind duplicated
     newData.forEach(function (email) {
         const listItem = document.createElement("li"); // Create a new list item
+        listItem.addEventListener("click", () => visitOtherUser(email));
         const anchor = document.createElement("a"); // Create an anchor element
         anchor.textContent = email; // Set the text content of the anchor to the email
         anchor.href = "#"; // Set the href attribute as needed
