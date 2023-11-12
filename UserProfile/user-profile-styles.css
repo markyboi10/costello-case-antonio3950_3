@@ -1,3 +1,6 @@
+body {
+  background-color: #dbdbdb;
+}
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {
   height: 1000px;
@@ -37,12 +40,18 @@ footer {
   width: 100%;
 }
 #comments-container {
-  height: 40%;
+  height: 300px;
   width: 100%;
+  overflow: scroll;
+  padding: 10px;
+  margin-top: 5px;
 }
 .other-vids-container {
   margin-top: 20px;
+  height: 1000px;
+  overflow: scroll;
 }
+
 .other-vids-container img {
   height: 150px;
   width: auto;
@@ -56,4 +65,19 @@ a {
   height: auto;
   max-height: 200px;
   overflow-x: hidden;
+}
+
+.navbar.navbar-default {
+  top: 0;
+  position: sticky;
+  z-index: 1;
+  box-shadow: 0px 4px 20px 0 #00000045;
+}
+
+#page-container {
+  background-color: white;
+  margin: 15px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 13px 0px #0000003d;
 }

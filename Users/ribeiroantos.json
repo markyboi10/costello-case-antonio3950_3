@@ -1,5 +1,16 @@
 {
   "name": "ribeiroantos@merrimack.edu",
-  "videos": [],
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/COWIGUwS8u0?si=bkzTN_UpW464ZSGF\" title=\"YouTube video player",
+      "description": "Check out this interesting Bonsai video!",
+      "comments": []
+    },
+    {
+      "src": "https://www.youtube.com/embed/pbG1WNQ7HuE?si=uBAwiNGvX8hxmo9w",
+      "description": "Another bonsai video, this one is about Brazilian Rain Tree.",
+      "comments": []
+    }
+  ],
   "friends": []
 }
