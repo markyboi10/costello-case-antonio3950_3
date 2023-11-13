@@ -209,8 +209,8 @@ app.post("/add-comment", (req, res) => {
     const commentData = {
       user: commentUser,
 
-      content: comment
-
+      content: comment,
+    };
     userData.videos.find(video => video.src === videoUrl).comments.push(commentData);
 
     fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");

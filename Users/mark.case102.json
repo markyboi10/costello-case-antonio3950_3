@@ -8,6 +8,10 @@
         {
           "user": "mark.case102",
           "content": "Wow so cool"
+        },
+        {
+          "user": "mark.case102",
+          "content": "test"
         }
       ]
     },
@@ -22,5 +26,9 @@
       "comments": []
     }
   ],
-  "friends": []
+  "friends": [
+    "porsche@gmail.com",
+    "casem",
+    "ribeiroantos"
+  ]
 }

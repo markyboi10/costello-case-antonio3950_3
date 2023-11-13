@@ -1,6 +1,7 @@
 body {
   background-color: #dbdbdb;
 }
+
 /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
 .row.content {
   height: 1000px;
@@ -31,14 +32,27 @@ footer {
 }
 
 #video-container {
-  height: 60%;
+  height: 55%;
   width: 100%;
 }
+
 #video-container iframe {
-  position: relative;
-  height: 75%;
+
   width: 100%;
+  height: 100%;
 }
+
+#video-description {
+  resize: vertical;
+}
+
+.container-border {
+  margin-top: 1rem;
+  margin-bottom: 5rem;
+  border: 1.7px solid black;
+  border-radius: 5px;
+}
+
 #comments-container {
   height: 300px;
   width: 100%;
@@ -46,6 +60,7 @@ footer {
   padding: 10px;
   margin-top: 5px;
 }
+
 .other-vids-container {
   margin-top: 20px;
   height: 1000px;
@@ -61,6 +76,7 @@ footer {
 a {
   cursor: pointer;
 }
+
 .scrollable-menu {
   height: auto;
   max-height: 200px;
@@ -80,4 +96,35 @@ a {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 0 13px 0px #0000003d;
+}
+
+.mb-0 {
+  margin-bottom: 0 !important;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem !important;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem !important;
+}
+
+.mb-3 {
+  margin-bottom: 1rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem !important;
+}
+
+.mb-5 {
+  margin-bottom: 3rem !important;
+}
+
+.hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }

@@ -7,8 +7,9 @@ if (storedUserData) {
 
   function makePrimaryVideo(video) {
     var videoContainer = document.getElementById("video-container");
+    var videoDescContainer = document.getElementById("vid-desc");
     var commentsContainer = document.getElementById("comments-container");
-    document.getElementById("add-comment-form").style.display = "block"; // Shows the comment form when a primary video is set
+    document.getElementById("add-comment-form"); // Shows the comment form when a primary video is set
 
     if (currVideo != null) {
       toggleDisplay(currVideo);
@@ -18,6 +19,7 @@ if (storedUserData) {
     }
 
     var primVid = document.createElement("iframe");
+    primVid.style.borderRadius = "10px";
     var primDesc = document.createElement("p");
 
     primVid.src = video.src;
@@ -25,7 +27,7 @@ if (storedUserData) {
     primDesc.textContent = video.description;
 
     videoContainer.appendChild(primVid);
-    videoContainer.appendChild(primDesc);
+    videoDescContainer.appendChild(primDesc);
 
     // Add the comments to the primary video
     video.comments.map((comment) => createComment(comment));
@@ -93,7 +95,7 @@ if (storedUserData) {
     var commentsContainer = document.getElementById("comments-container");
 
     var comment = document.createElement("div");
-    var commentUser = document.createElement("h3");
+    var commentUser = document.createElement("h4");
     var commentContent = document.createElement("p");
 
     commentUser.appendChild(document.createTextNode(commentData.user));
