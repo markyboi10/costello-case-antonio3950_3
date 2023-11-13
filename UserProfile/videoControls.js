@@ -20,14 +20,12 @@ if (storedUserData) {
 
     var primVid = document.createElement("iframe");
     primVid.style.borderRadius = "10px";
-    var primDesc = document.createElement("p");
 
     primVid.src = video.src;
     primVid.allowFullscreen = true;
-    primDesc.textContent = video.description;
 
     videoContainer.appendChild(primVid);
-    videoDescContainer.appendChild(primDesc);
+    videoDescContainer.innerText = video.description;
 
     // Add the comments to the primary video
     video.comments.map((comment) => createComment(comment));
@@ -45,6 +43,7 @@ if (storedUserData) {
       "other-vids-container"
     )[0];
     var videoDiv = document.createElement("div");
+    if (videoDiv) videoDiv.classList.add("other-vid");
 
     var vidDesc = document.createElement("p");
     var vidDescAnchor = document.createElement("a");
@@ -78,7 +77,7 @@ if (storedUserData) {
     for (let i in otherVidsContainer.childNodes) {
       let child = otherVidsContainer.childNodes[i]; // Get the div
       if (child.containedVideo == video)
-        if (child.style.display == "none") child.style.display = "block";
+        if (child.style.display == "none") child.style.display = "flex";
         else child.style.display = "none";
     }
   }
@@ -156,8 +155,8 @@ if (storedUserData) {
       .getAttribute("src");
 
     const comment = document.getElementById("user-comment").value;
-    const userName = localStorage.getItem("loginEmail");
-    const commentUser = userData.name;
+    const userName = userData.name;
+    const commentUser = localStorage.getItem("loginEmail");
 
     fetch("/add-comment", {
       method: "post",
@@ -202,5 +201,4 @@ if (storedUserData) {
 
   // Access and display the data
   document.getElementById("username").textContent = userData.name.split("@")[0]; // Split just show the username before the @
-  document.getElementById("email").textContent = userData.name; //Shows the user email
 }
