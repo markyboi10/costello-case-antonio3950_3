@@ -82,6 +82,7 @@ eventSource.onmessage = handleSSE;
 function handleSSE(event) {
     const newData = JSON.parse(event.data); // data from endpoint
     updateUI(newData); // Call update UI with the new data
+    getNewPageData();
 }
 
 eventSource.onerror = (error) => {

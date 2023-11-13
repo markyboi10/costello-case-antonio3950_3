@@ -238,8 +238,6 @@ app.get('/sse-routine-new-users', (req, res) => {
       const allUsersData = fs.readFileSync(allUsersFileName, 'utf8');
       const newData = JSON.parse(allUsersData);
 
-      console.log("sse");
-      console.log(allUsersData);
       res.write(`data: ${JSON.stringify(newData)}\n\n`);
 
     }
