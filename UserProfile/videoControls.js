@@ -243,12 +243,17 @@ function updatePageInfo() {
       // Make sure the video container is visible (there are videos).
       document.getElementById("video-container").style.display = "visible";
       
+    } else {
+      console.log("No videos to show");
+      document.getElementById("video-container").style.display = "none"; //Hides video container if user has no videos added yet
+      document.getElementById("primary-video").innerHTML =
+        "<h1>No videos yet!</h1>";
     }
   } else {
-    console.log("No videos to show");
+    console.error("Failed to load user data.");
     document.getElementById("video-container").style.display = "none"; //Hides video container if user has no videos added yet
     document.getElementById("primary-video").innerHTML =
-      "<h1>No videos yet!</h1>";
+      "<h1>Could not load user data.</h1>";
   }
 }
 
