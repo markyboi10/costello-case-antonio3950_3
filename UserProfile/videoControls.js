@@ -6,32 +6,29 @@ var currVideo;
  *   VIDEO CONTROLS FUNCTIONS
  */
 function makePrimaryVideo(video) {
-  var videoContainer = document.getElementById("video-container");
+  var videoContainer = document.getElementById("primary-video");
   var videoDescContainer = document.getElementById("vid-desc");
   var commentsContainer = document.getElementById("comments-container");
   document.getElementById("add-comment-form"); // Shows the comment form when a primary video is set
 
+  videoContainer.innerHTML = "";
+  commentsContainer.innerHTML = "";
+
   if (currVideo != null) {
     toggleDisplay(currVideo);
-    // If a video is selected, clear it
-    videoContainer.innerHTML = "";
-    videoDescContainer.innerHTML = "";
-    commentsContainer.innerHTML = "";
   }
 
   var primVid = document.createElement("iframe");
   primVid.style.borderRadius = "10px";
-  var primDesc = document.createElement("p");
 
   primVid.src = video.src;
   primVid.allowFullscreen = true;
-  primDesc.textContent = video.description;
 
   videoContainer.appendChild(primVid);
-  videoDescContainer.appendChild(primDesc);
+  videoDescContainer.innerText = video.description;
 
   // Add the comments to the primary video
-  document.getElementById("add-comment-form").style.display = "block"; // Ensure comments can be added again.
+  document.getElementById("add-comment-form").style.display = "block"; // Ensure comments can be added.
   video.comments.map((comment) => createComment(comment));
 
   currVideo = video;
@@ -47,6 +44,7 @@ function addToOtherVids(video) {
     "other-vids-container"
   )[0];
   var videoDiv = document.createElement("div");
+  if (videoDiv) videoDiv.classList.add("other-vid");
 
   var vidDesc = document.createElement("p");
   var vidDescAnchor = document.createElement("a");
@@ -106,7 +104,7 @@ function createComment(commentData) {
   var commentsContainer = document.getElementById("comments-container");
 
   var comment = document.createElement("div");
-  var commentUser = document.createElement("h4");
+  var commentUser = document.createElement("h3");
   var commentContent = document.createElement("p");
 
   commentUser.appendChild(document.createTextNode(commentData.user));
@@ -159,13 +157,13 @@ function addVideo() {
 function addComment() {
   // Get the video url from the iframe
   const videoUrl = document
-    .getElementById("video-container")
+    .getElementById("primary-video")
     .getElementsByTagName("iframe")[0]
     .getAttribute("src");
 
   const comment = document.getElementById("user-comment").value;
-  const userName = localStorage.getItem("loginEmail");
-  const commentUser = userData.name;
+  const userName = userData.name;
+  const commentUser = localStorage.getItem("loginEmail");
 
   fetch("/add-comment", {
     method: "post",
@@ -189,7 +187,6 @@ function addComment() {
   // Clear placeholder of comment after clicking the button to comment
   document.getElementById("user-comment").value = "";
 }
-
 
 /*
  * PRIMARY PAGE INFORMATION FUNCTION
@@ -226,6 +223,7 @@ function updatePageInfo() {
         }
       }
 
+      
       if(!currVideoFound) { // If the video was removed.
         console.log("Currently selected video has been removed.");
 
@@ -234,22 +232,23 @@ function updatePageInfo() {
         document.getElementById("comments-container").innerHTML = "";
 
         // Write a message saying the video was removed.
-        var videoContainer = document.getElementById("video-container");
-        videoContainer.innerHTML = "";
-        var h1 = document.createElement('h1');
-        h1.innerHTML = "The selected video has been removed.";
-        videoContainer.appendChild(h1);
-
+        document.getElementById("primary-video").innerHTML =
+          "The selected video has been removed.";
         document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
       } else { // Insert the current version of comments (easier than checking if it's changed)
         document.getElementById("comments-container").innerHTML = "";
         currVideo.comments.map((comment) => createComment(comment));
       }
-
-    } else {
-      console.log("No videos to show");
-      document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
+      
+      // Make sure the video container is visible (there are videos).
+      document.getElementById("video-container").style.display = "visible";
+      
     }
+  } else {
+    console.log("No videos to show");
+    document.getElementById("video-container").style.display = "none"; //Hides video container if user has no videos added yet
+    document.getElementById("primary-video").innerHTML =
+      "<h1>No videos yet!</h1>";
   }
 }
 

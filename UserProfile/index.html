@@ -1,104 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>My Profile</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="user-profile-styles.css" />
+  </head>
 
-<head>
-  <title>My Profile</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" />
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="user-profile-styles.css" />
+  <!-- Load all users onload(), found in allUsers.js -->
 
-</head>
-
-<!-- Load all users onload(), found in allUsers.js -->
-
-<body onload="decodeAllUsers()">
-  <nav class="navbar navbar-default">
-    <div class="container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-          data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="#" onclick="navigateHome()">My Profile</a>
-      </div>
-
-      <!-- nav bar -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">Your Friends<span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" role="menu" id="friends-list"></ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-              aria-expanded="false">All Users <span class="caret"></span></a>
-            <ul class="dropdown-menu scrollable-menu" id="all_users_dd"></ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-  <div class="container-fluid" id="page-container">
-    <div class="row content">
-      <div class="col-sm-8 sidenav">
-        <p><strong>User:</strong> <span id="username"></span></p>
-        <div id="video-container">
-
+  <body onload="decodeAllUsers()">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#bs-example-navbar-collapse-1"
+            aria-expanded="false"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#" onclick="navigateHome()"
+            >My Profile</a
+          >
         </div>
-        <div id="vid-desc" class="container-border">
 
+        <!-- nav bar -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >Your Friends<span class="caret"></span
+              ></a>
+              <ul
+                class="dropdown-menu scrollable-menu"
+                role="menu"
+                id="friends-list"
+              ></ul>
+            </li>
+          </ul>
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a
+                href="#"
+                class="dropdown-toggle"
+                data-toggle="dropdown"
+                role="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                >All Users <span class="caret"></span
+              ></a>
+              <ul class="dropdown-menu scrollable-menu" id="all_users_dd"></ul>
+            </li>
+          </ul>
         </div>
-        <button id="add-friend-btn" onclick="addFriend()">
-          Add Friend
-        </button>
-
-        <form id="add-comment-form">
-          <div class="form-row">
-            <div class="form-group col-md-6">
-              <input type="text" class="form-control" id="user-comment" placeholder="Comment" />
+      </div>
+    </nav>
+    <div class="container-fluid" id="page-container">
+      <div class="row content">
+        <div class="col-sm-9 sidenav">
+          <p>
+            <strong>User:</strong> <span id="username"></span>
+            <button
+              class="badge badge-primary"
+              id="add-friend-btn"
+              onclick="addFriend()"
+            >
+              Add Friend
+            </button>
+          </p>
+          <div id="primary-video"></div>
+          <div id="video-container">
+            <div id="vid-desc"></div>
+            <form id="add-comment-form">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="user-comment"
+                    placeholder="Comment"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    value="Add Comment"
+                    onclick="addComment()"
+                  >
+                    Add Comment
+                  </button>
+                </div>
+              </div>
+            </form>
+            <div id="comments-container"></div>
+          </div>
+        </div>
+        <div class="col-sm-3">
+          <h4>My favorite videos</h4>
+          <div class="hr"></div>
+          <form id="add-video-form">
+            <div class="mb-3">
+              <input
+                type="text"
+                class="form-control"
+                id="video-url"
+                placeholder="Embedded YouTube URL"
+              />
+            </div>
+            <div class="mt-4 mb-4">
+              <textarea
+                type="text"
+                class="form-control"
+                id="video-description"
+                placeholder="Description of Video"
+              ></textarea>
             </div>
             <div>
-              <button type="button" class="btn btn-success" value="Add Comment" onclick="addComment()">Add
-                Comment</button>
+              <button
+                type="button"
+                class="btn btn-primary btn-sm btn-block"
+                value="Add New Video"
+                onclick="addVideo()"
+              >
+                Add New Video
+              </button>
             </div>
-          </div>
-
-        </form>
-        <div id="comments-container"></div>
-      </div>
-      <div class="col-sm-4">
-        <h4>My favorite videos</h4>
-        <div class="hr"></div>
-        <form id="add-video-form">
-          <div class="mb-3">
-            <input type="text" class="form-control" id="video-url" placeholder="Embedded YouTube URL" />
-          </div>
-          <div class="mt-4 mb-4">
-            <textarea type="text" class="form-control" id="video-description"
-              placeholder="Description of Video"></textarea>
-          </div>
-          <div>
-            <button type="button" class="btn btn-primary btn-sm btn-block" value="Add New Video"
-              onclick="addVideo()">Add New Video</button>
-          </div>
-        </form>
-        <div class="hr"></div>
-        <div class="other-vids-container"></div>
+          </form>
+          <div class="hr"></div>
+          <div class="other-vids-container"></div>
+        </div>
       </div>
     </div>
-  </div>
-</body>
-
+  </body>
 </html>
 <script src="userProfile.js"></script>
 <script src="videoControls.js"></script>
