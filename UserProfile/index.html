@@ -8,6 +8,12 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Urbanist:wght@600&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="user-profile-styles.css" />
@@ -87,32 +93,33 @@
               Add Friend
             </button>
           </p>
-          <div id="video-container"></div>
-          <div id="vid-desc"></div>
-
-          <form id="add-comment-form">
-            <div class="form-row">
-              <div class="form-group col-md-6">
-                <input
-                  type="text"
-                  class="form-control"
-                  id="user-comment"
-                  placeholder="Comment"
-                />
+          <div id="primary-video"></div>
+          <div id="video-container">
+            <div id="vid-desc"></div>
+            <form id="add-comment-form">
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="user-comment"
+                    placeholder="Comment"
+                  />
+                </div>
+                <div>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    value="Add Comment"
+                    onclick="addComment()"
+                  >
+                    Add Comment
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  type="button"
-                  class="btn btn-success"
-                  value="Add Comment"
-                  onclick="addComment()"
-                >
-                  Add Comment
-                </button>
-              </div>
-            </div>
-          </form>
-          <div id="comments-container"></div>
+            </form>
+            <div id="comments-container"></div>
+          </div>
         </div>
         <div class="col-sm-3">
           <h4>My favorite videos</h4>
