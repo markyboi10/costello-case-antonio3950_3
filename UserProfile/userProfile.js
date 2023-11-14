@@ -31,12 +31,9 @@ function createFriendsList(loginEmail) {
           friendsList.appendChild(createUserLi(friend))
         );
         if(data.friends.includes(userEmail.split('@')[0])) {
-          console.log("Friend found");
           document.getElementById("add-friend-btn").innerHTML = "Remove Friend";
         }
         else {
-          console.log("Friend not found");
-          console.log(data);
           document.getElementById("add-friend-btn").innerHTML = "Add Friend";
         }
       }
