@@ -15,6 +15,7 @@ function makePrimaryVideo(video) {
     toggleDisplay(currVideo);
     // If a video is selected, clear it
     videoContainer.innerHTML = "";
+    videoDescContainer.innerHTML = "";
     commentsContainer.innerHTML = "";
   }
 
@@ -240,6 +241,9 @@ function updatePageInfo() {
         videoContainer.appendChild(h1);
 
         document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
+      } else { // Insert the current version of comments (easier than checking if it's changed)
+        document.getElementById("comments-container").innerHTML = "";
+        currVideo.comments.map((comment) => createComment(comment));
       }
 
     } else {

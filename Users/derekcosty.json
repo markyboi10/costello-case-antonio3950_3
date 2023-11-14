@@ -7,10 +7,6 @@
       "comments": [
         {
           "user": "derekcosty",
-          "content": ""
-        },
-        {
-          "user": "derekcosty",
           "content": "asdas"
         },
         {
@@ -26,21 +22,15 @@
         {
           "user": "derekcosty",
           "content": "This is Derek's new info"
-        },
-        {
-          "user": "derekcosty",
-          "content": "LOVE THIS VIDEO!!!"
-        },
-        {
-          "user": "derekcosty",
-          "content": "TEST2"
         }
       ]
     },
     {
       "src": "https://www.youtube.com/embed/O1DNoD9ZhmI?si=MI0nh0jqYG5gmuyW",
       "description": "Another Test Video\n\nCheck it out!",
-      "comments": []
+      "comments": [
+        
+      ]
     }
   ],
   "friends": [
