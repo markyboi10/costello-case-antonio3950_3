@@ -262,4 +262,24 @@ app.post("/add-friend", (req, res) => {
     res.json({ error: "User not found" });
   }
 });
+app.post("/remove-friend", (req, res) => {
+  let { userName, friendUsername } = req.body;
+  const jsonFileName = path.join("Users", `${userName}.json`);
+  if (fs.existsSync(jsonFileName)) {
+    const userData = JSON.parse(fs.readFileSync(jsonFileName, "utf8"));
+    const index = userData.friends.indexOf(friendUsername);
+    if (index > -1) { // only splice array when item is found
+      userData.friends.splice(index, 1); // 2nd parameter means remove one item only
+    } else {
+      // Freind is not found in the array
+      res.json({ error: "Friend \"" + friendUsername + "\" could not be removed, as they could not be found." });
+    }
+    fs.writeFileSync(jsonFileName, JSON.stringify(userData, null, 2), "utf8");
+
+    res.sendStatus(200);
+  } else {
+    // User is not found
+    res.json({ error: "User not found" });
+  }
+});
 

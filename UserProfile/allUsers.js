@@ -15,25 +15,43 @@ function visitOtherUser(userName) {
       console.error("User failed to be added", error);
     });
 }
-function addFriend() {
+function addRemoveFriend() {
   const friendUsername = document.getElementById("username").textContent;
+  const friendEmail = JSON.parse(localStorage.getItem("userData")).name;
   const userName = localStorage.getItem("loginEmail").split("@")[0];
-  fetch("/add-friend", {
-    method: "post",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      userName,
-      friendUsername,
-    }),
-  }).then(() => {
-    addToFriendsList(friendUsername); // Append the list item to the dropdown menu
-  });
+  if(document.getElementById("add-friend-btn").innerHTML.toLowerCase() == "add friend")
+    fetch("/add-friend", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName,
+        friendUsername,
+      }),
+    }).then(() => {
+      addToFriendsList(friendUsername, friendEmail); // Append the list item to the dropdown menu
+      document.getElementById("add-friend-btn").innerHTML = "Remove Friend";
+    });
+  else
+    fetch("/remove-friend", {
+      method: "post",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userName,
+        friendUsername,
+      }),
+    }).then(() => {
+      removeFromFriendsList(friendUsername); // Append the list item to the dropdown menu
+      document.getElementById("add-friend-btn").innerHTML = "Add Friend";
+    });
 }
 
-function addToFriendsList(friendUsername) {
+function addToFriendsList(friendUsername, email) {
   var dropdownMenu = document.getElementById("friends-list"); // Get the dropdown menu element
 
   // Loop through the allUsers array and create list items
@@ -46,6 +64,20 @@ function addToFriendsList(friendUsername) {
 
   listItem.appendChild(anchor); // Append the anchor to the list item
   dropdownMenu.appendChild(listItem);
+}
+
+function removeFromFriendsList(friendUsername) {
+  var dropdownMenu = document.getElementById("friends-list"); // Get the dropdown menu element
+
+  // For each friend in the drop down menu:
+  for(var friendIndex in dropdownMenu.childNodes) {
+    var friendLI = dropdownMenu.childNodes[friendIndex];
+    // If we find the friend, remove it.
+    try {
+    if(friendLI.firstChild.textContent == friendUsername)
+      dropdownMenu.removeChild(friendLI);
+    } catch(error) {}
+  }
 }
 
 function decodeAllUsers() {
