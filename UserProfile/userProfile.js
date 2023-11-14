@@ -1,10 +1,11 @@
 const loginEmail = localStorage.getItem("loginEmail");
 const data = localStorage.getItem("userData");
+let userEmail;
 
 if (loginEmail && data) {
   createFriendsList(loginEmail);
 
-  const userEmail = JSON.parse(data).name;
+  userEmail = JSON.parse(data).name;
 
   if (loginEmail === userEmail) {
     // User is on their own page
@@ -29,6 +30,15 @@ function createFriendsList(loginEmail) {
         data.friends.map((friend) =>
           friendsList.appendChild(createUserLi(friend))
         );
+        if(data.friends.includes(userEmail.split('@')[0])) {
+          console.log("Friend found");
+          document.getElementById("add-friend-btn").innerHTML = "Remove Friend";
+        }
+        else {
+          console.log("Friend not found");
+          console.log(data);
+          document.getElementById("add-friend-btn").innerHTML = "Add Friend";
+        }
       }
     })
     .catch((error) => {

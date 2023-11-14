@@ -12,6 +12,18 @@
         {
           "user": "derekcosty",
           "content": "asdasno, but fr"
+        },
+        {
+          "user": "testy",
+          "content": "Testing comments."
+        },
+        {
+          "user": "testy",
+          "content": "This works flawlessly."
+        },
+        {
+          "user": "derekcosty",
+          "content": "Right?"
         }
       ]
     },
@@ -28,9 +40,7 @@
     {
       "src": "https://www.youtube.com/embed/O1DNoD9ZhmI?si=MI0nh0jqYG5gmuyW",
       "description": "Another Test Video\n\nCheck it out!",
-      "comments": [
-        
-      ]
+      "comments": []
     }
   ],
   "friends": [
