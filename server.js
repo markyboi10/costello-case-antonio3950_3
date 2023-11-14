@@ -165,9 +165,6 @@ app.get("/getAllUsers", (req, res) => {
     const allUsersData = fs.readFileSync(allUsersFileName, "utf8");
     allUsers = JSON.parse(allUsersData);
 
-    console.log("fetch");
-    console.log(allUsers);
-
     res.json(allUsers);
   } else {
     res.json({ error: "Error in returning all users" });
