@@ -203,12 +203,11 @@ function updatePageInfo() {
 
     // If videos exist.
     if (userData.videos.length != 0) {
-      var updateCurrVideo = false; // Track if we need to set currVideo
-      // If the currently selected video is null, set the first video.
-      if(currVideo == null)
+
+      var currVideoFound = false; // Track if we found currVideo in the selection panel.
+
+      if(currVideo == null) // If the currently selected video is null, set the first video.
         makePrimaryVideo(userData.videos[0]);
-      else
-        updateCurrVideo = true;
 
       // Clear the videos in the selection panel.
       clearVideos();
@@ -218,12 +217,33 @@ function updatePageInfo() {
         if (video.src) {
           var vidDiv = addToOtherVids(video);
           if (video.src == currVideo.src) {
-            if(updateCurrVideo)
-              currVideo = video;
+            currVideo = video;
+            currVideoFound = true;
             vidDiv.style.display = "none";
           }
         }
       }
+
+      if(!currVideoFound) { // If the video was removed.
+        console.log("Currently selected video has been removed.");
+
+        // Clear the comments section and title
+        document.getElementById("vid-desc").innerHTML = "";
+        document.getElementById("comments-container").innerHTML = "";
+
+        // Write a message saying the video was removed.
+        var videoContainer = document.getElementById("video-container");
+        videoContainer.innerHTML = "";
+        var h1 = document.createElement('h1');
+        h1.innerHTML = "The selected video has been removed.";
+        videoContainer.appendChild(h1);
+
+        document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
+      }
+      else { // Otherwise, ensure the ability to add comments is back.
+        document.getElementById("add-comment-form").style.display = "block"; // Display comments.
+      }
+
     } else {
       console.log("No videos to show");
       document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
