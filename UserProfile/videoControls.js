@@ -203,10 +203,12 @@ function updatePageInfo() {
 
     // If videos exist.
     if (userData.videos.length != 0) {
-
+      var updateCurrVideo = false; // Track if we need to set currVideo
       // If the currently selected video is null, set the first video.
       if(currVideo == null)
         makePrimaryVideo(userData.videos[0]);
+      else
+        updateCurrVideo = true;
 
       // Clear the videos in the selection panel.
       clearVideos();
@@ -215,8 +217,9 @@ function updatePageInfo() {
         var video = userData.videos[i];
         if (video.src) {
           var vidDiv = addToOtherVids(video);
-          if (video == currVideo)
-          {
+          if (video.src == currVideo.src) {
+            if(updateCurrVideo)
+              currVideo = video;
             vidDiv.style.display = "none";
           }
         }
