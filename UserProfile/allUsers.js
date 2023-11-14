@@ -7,7 +7,6 @@ function visitOtherUser(userName) {
       if (data.error) {
         console.log(data.error);
       } else {
-        console.log(data);
         localStorage.setItem("userData", JSON.stringify(data));
         window.location.href = "/UserProfile/index.html";
       }

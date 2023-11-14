@@ -69,6 +69,15 @@ function addToOtherVids(video) {
   return videoDiv;
 }
 
+// Clears the "other videos" section.
+function clearVideos() {
+  var otherVidsContainer = document.getElementsByClassName(
+    "other-vids-container"
+  )[0];
+
+  otherVidsContainer.innerHTML = "";
+}
+
 function toggleDisplay(video) {
   var otherVidsContainer = document.getElementsByClassName(
     "other-vids-container"
@@ -189,19 +198,26 @@ function updatePageInfo() {
     // Parse the JSON data
     userData = JSON.parse(storedUserData);
     
-    // Access and display the data
-    document.getElementById("username").textContent = userData.name;
+    // Display the user data.
+    document.getElementById("username").textContent = userData.name.split('@')[0];
 
+    // If videos exist.
     if (userData.videos.length != 0) {
-      makePrimaryVideo(userData.videos[0]);
 
-      if (userData.videos.length > 1) {
-        // Fill all the other videos to the selection panel
-        for (let i = 0; i < userData.videos.length; i++) {
-          var video = userData.videos[i];
-          if (video.src) {
-            var vidDiv = addToOtherVids(video);
-            if (i === 0) vidDiv.style.display = "none";
+      // If the currently selected video is null, set the first video.
+      if(currVideo == null)
+        makePrimaryVideo(userData.videos[0]);
+
+      // Clear the videos in the selection panel.
+      clearVideos();
+      // Fill all the other videos to the selection panel
+      for (let i = 0; i < userData.videos.length; i++) {
+        var video = userData.videos[i];
+        if (video.src) {
+          var vidDiv = addToOtherVids(video);
+          if (video == currVideo)
+          {
+            vidDiv.style.display = "none";
           }
         }
       }
@@ -209,22 +225,17 @@ function updatePageInfo() {
       console.log("No videos to show");
       document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
     }
-
-    // Access and display the data
-    document.getElementById("username").textContent = userData.name.split("@")[0]; // Split just show the username before the @
-    document.getElementById("email").textContent = userData.name; //Shows the user email
   }
 }
+
+// Call once on page load.
 updatePageInfo();
 
 /*
  *  FUNCTION TO UPDATE PAGE INFORMATION
  */
 function getNewPageData() {
-  console.log(userData);
   if(userData) {
-    console.log("Getting new page data for user:");
-    console.log(userData.name);
     fetch(`/getUser?selectedEmail=${userData.name}`)
       .then((response) => response.json())
       .then((data) => {
@@ -236,13 +247,11 @@ function getNewPageData() {
           {
             localStorage.setItem("userData", JSON.stringify(data));
             updatePageInfo(); // DEREK TODO: Write this function
-          } else {
-            console.log("Page data is equal. Unchanged.");
           }
         }
       })
       .catch((error) => {
-        console.error("Page failed to update");
+        console.error("Page failed to update. Reason: " + error);
       });
   }
 }
