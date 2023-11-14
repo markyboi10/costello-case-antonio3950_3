@@ -30,6 +30,7 @@ function makePrimaryVideo(video) {
   videoDescContainer.appendChild(primDesc);
 
   // Add the comments to the primary video
+  document.getElementById("add-comment-form").style.display = "block"; // Ensure comments can be added again.
   video.comments.map((comment) => createComment(comment));
 
   currVideo = video;
@@ -239,9 +240,6 @@ function updatePageInfo() {
         videoContainer.appendChild(h1);
 
         document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
-      }
-      else { // Otherwise, ensure the ability to add comments is back.
-        document.getElementById("add-comment-form").style.display = "block"; // Display comments.
       }
 
     } else {
