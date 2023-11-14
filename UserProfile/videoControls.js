@@ -6,16 +6,17 @@ if (storedUserData) {
   var currVideo;
 
   function makePrimaryVideo(video) {
-    var videoContainer = document.getElementById("video-container");
+    var videoContainer = document.getElementById("primary-video");
     var videoDescContainer = document.getElementById("vid-desc");
     var commentsContainer = document.getElementById("comments-container");
     document.getElementById("add-comment-form"); // Shows the comment form when a primary video is set
 
+    videoContainer.innerHTML = "";
+    commentsContainer.innerHTML = "";
+
     if (currVideo != null) {
       toggleDisplay(currVideo);
       // If a video is selected, clear it
-      videoContainer.innerHTML = "";
-      commentsContainer.innerHTML = "";
     }
 
     var primVid = document.createElement("iframe");
@@ -94,7 +95,7 @@ if (storedUserData) {
     var commentsContainer = document.getElementById("comments-container");
 
     var comment = document.createElement("div");
-    var commentUser = document.createElement("h4");
+    var commentUser = document.createElement("h3");
     var commentContent = document.createElement("p");
 
     commentUser.appendChild(document.createTextNode(commentData.user));
@@ -150,7 +151,7 @@ if (storedUserData) {
   function addComment() {
     // Get the video url from the iframe
     const videoUrl = document
-      .getElementById("video-container")
+      .getElementById("primary-video")
       .getElementsByTagName("iframe")[0]
       .getAttribute("src");
 
@@ -193,10 +194,14 @@ if (storedUserData) {
         }
         if (i === 0) vidDiv.style.display = "none";
       }
+
+      document.getElementById("video-container").style.display = "visible";
     }
   } else {
     console.log("No videos to show");
-    document.getElementById("add-comment-form").style.display = "none"; //Hides add comment if user has no videos added yet
+    document.getElementById("video-container").style.display = "none"; //Hides video container if user has no videos added yet
+    document.getElementById("primary-video").innerHTML =
+      "<h1>No videos yet!</h1>";
   }
 
   // Access and display the data
