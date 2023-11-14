@@ -7,7 +7,6 @@ function visitOtherUser(userName) {
       if (data.error) {
         console.log(data.error);
       } else {
-        console.log(data);
         localStorage.setItem("userData", JSON.stringify(data));
         window.location.href = "/UserProfile/index.html";
       }
@@ -79,8 +78,9 @@ eventSource.onmessage = handleSSE;
 
 // Function to handle SSE messages
 function handleSSE(event) {
-  const newData = JSON.parse(event.data); // data from endpoint
-  updateUI(newData); // Call update UI with the new data
+    const newData = JSON.parse(event.data); // data from endpoint
+    updateUI(newData); // Call update UI with the new data
+    getNewPageData();
 }
 
 eventSource.onerror = (error) => {

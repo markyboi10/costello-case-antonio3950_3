@@ -1,0 +1,40 @@
+{
+  "name": "derekcosty@gmail.com",
+  "videos": [
+    {
+      "src": "https://www.youtube.com/embed/X22ZZlgKcfQ?si=7CVH2myQxm_lwAW3",
+      "description": "RULER KAI'SA",
+      "comments": [
+        {
+          "user": "derekcosty",
+          "content": "asdas"
+        },
+        {
+          "user": "derekcosty",
+          "content": "asdasno, but fr"
+        }
+      ]
+    },
+    {
+      "src": "https://www.youtube.com/embed/PIxo9Yc3dco?si=PWvA51zkWFV4opf3",
+      "description": "Etho's Video",
+      "comments": [
+        {
+          "user": "derekcosty",
+          "content": "This is Derek's new info"
+        }
+      ]
+    },
+    {
+      "src": "https://www.youtube.com/embed/O1DNoD9ZhmI?si=MI0nh0jqYG5gmuyW",
+      "description": "Another Test Video\n\nCheck it out!",
+      "comments": [
+        
+      ]
+    }
+  ],
+  "friends": [
+    "ribeiroantos",
+    "mark.case1032"
+  ]
+}
